@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Tutu - 2 Anos</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURAÇÕES GERAIS --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* 1. FUNDO FIXO DE CEREJEIRA */
+        .background-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Substitua pelo nome da sua imagem de fundo de flores */
+            background-image: url('IMG/bg-cerejeira.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            opacity: 0.6;
+            /* Levemente transparente para não brigar com o texto */
+        }
+
+        /* Camada preta atrás do texto para dar leitura (igual aos seus prints) */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #0d0d0d;
+            /* Fundo quase preto sólido para o conteúdo */
+            box-shadow: 0 0 50px rgba(0, 0, 0, 1);
+            min-height: 100vh;
+            padding-bottom: 50px;
+            display: none;
+            /* Começa escondido */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- TELA INICIAL (ENVELOPE) --- */
+        #intro-screen {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .envelope-container {
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.05);
+            animation: pulse 1s infinite;
+        }
+
+        .envelope-img {
+            max-width: 500px;
+            width: 80vw;
+            filter: drop-shadow(0 0 15px rgba(219, 112, 147, 0.6));
+        }
+
+        /* --- LAYOUT DO CONTEÚDO (FLEXBOX) --- */
+
+        /* Imagem da carta aberta (PNG) */
+        .carta-aberta-full {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 40px auto;
+            border-radius: 10px;
+        }
+
+        /* Estrutura das Linhas (Texto + Imagem) */
+        .row {
+            display: flex;
+            align-items: center;
+            /* Centraliza verticalmente */
+            justify-content: space-between;
+            padding: 40px;
+            gap: 30px;
+            min-height: 60vh;
+            /* Garante altura para scroll */
+        }
+
+        /* Inverte a ordem para Imagem na Esquerda, Texto na Direita */
+        .row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* Colunas */
+        .col-text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .col-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Estilo das Imagens do Conteúdo */
+        .story-img {
+            max-width: 100%;
+            width: 350px;
+            border-radius: 8px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            /* Opcional: Efeito polaroid ou borda se quiser */
+        }
+
+        /* Estilo do Personagem (Sage) - sem borda */
+        .char-img {
+            max-width: 100%;
+            width: 300px;
+            background: transparent;
+        }
+
+        /* Footer Final */
+        .footer-msg {
+            text-align: center;
+            padding: 60px 20px;
+            font-size: 2rem;
+            font-family: 'Brush Script MT', cursive;
+            color: #fff;
+        }
+
+        /* RESPONSIVIDADE (Mobile) */
+        @media (max-width: 768px) {
+
+            .row,
+            .row-reverse {
+                flex-direction: column;
+                /* Empilha tudo */
+                text-align: center;
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .story-img,
+            .char-img {
+                width: 80%;
+                margin-top: 20px;
+            }
+
+            .envelope-img {
+                width: 90vw;
+            }
+
+            .col-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animação extra */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-fixed"></div>
+
+    <section id="intro-screen">
+        <div class="envelope-container" onclick="abrirSite()">
+            <img src="IMG/carta-fechada.jpg" alt="Carta para Você"
+                class="envelope-img animate__animated animate__zoomIn">
+        </div>
+    </section>
+
+    <div id="content-wrapper" class="content-wrapper">
+
+        <div data-aos="zoom-in" data-aos-duration="1500">
+            <img src="IMG/carta-aberta.png" alt="Carta Aberta" class="carta-aberta-full">
+        </div>
+
+        <div class="row">
+            <div class="col-text" data-aos="fade-right">
+                <p>Essa história vai ser repetida, mas faz uns trez anos que a gente se conheceu.</p><br>
+                <p><strong>E com toda a certeza, nem eu e nem você somos os mesmos daquele dia 17 de abril (na vdd 28 pq
+                        ali a gente cvs mesmo.)</strong></p>
+                <p>Eu penso que deveria ter continuado te deixando no vacuo pq né, quem quer conversar com um estranho
+                    que acabou de
+                    conhecer na internet...<br>
+                    mas quer saber?
+                <p><strong>Eu não me arrependo de ter começado a conversar com quem todo mundo chama de dark, e conhecer
+                        aquele que
+                        hoje eu chamo de Amor</strong></p>
+
+            </div>
+            <div class="col-img" data-aos="fade-left">
+                <img src="IMG/foto1.png" alt="Sage rindo" class="story-img">
+            </div>
+        </div>
+
+        <div class="row row-reverse">
+            <div class="col-text" data-aos="fade-right">
+                <p>Não tá escrito o quanto eu aprendi com você e o quanto eu entendi que eu...</p>
+                <p><strong>Repito</strong></p>
+                <p>EU não quero terminar esse relacionamento com você.<br>
+                    Pode ser duro às vezes enfrentar tudo o que vem com o relacionamento à distância: a falta de contato
+                    físico, as desavenças que com um único beijo seu eu ficaria pianinha, e a própria constante
+                    saudade... e isso já foi tópico de querer terminar pq eu sou muito MUITO SENTIMENTAL.</p>
+            </div>
+            <div class="col-img" data-aos="fade-left">
+                <img src="IMG/foto2.png" alt="Nós" class="story-img">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-text" data-aos="fade-right">
+                <p>Mas agradeço a Deus todas as vezes pela gente não ter terminado, porque eu não seria nem 1% de quem
+                    eu sou se não tivesse com você.<br>
+                    Meu mundo pode ter todas as cores do arco-íris, mas eu nunca iria ter o preto, e você trouxe essa
+                    cor pro meu mundo.</p>
+                <p>Eu sou muito feliz, sorridente, boboca e inocente, mas sou egoísta e mimada na mesma quantidade, e eu
+                    não conseguia me abrir de verdade a ninguém, pq sei que sou incompleta e me via muito insuficiente.
+                </p>
+            </div>
+            <div class="col-img" data-aos="fade-left">
+                <img src="IMG/foto6.png" alt="Nós" class="story-img">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-text" data-aos="fade-left">
+                <p>Mas você me mostrou que a minha incompletude era completa pra você, que meus pontos fracos eram seus
+                    pontos fortes e vice-versa... Você me mostrou um carinho imenso, mesmo eu sendo quem sou, mesmo
+                    vendo meu pior lado, mesmo me ouvindo agir de forma que não me orgulho... Você fez meus olhos
+                    brilharem por dois dias inteiros e me deu mais amor do que eu podia imaginar receber por seu toque.
+                </p>
+                <p><em>(Diga-se de passagem que quero muito mais do seu toque)</em></p>
+            </div>
+            <div class="col-img" data-aos="fade-right">
+                <img src="IMG/foto7.png" alt="Momentos" class="story-img">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-text" data-aos="fade-left">
+                <p>Você não escreve poemas, mas faz questão de sempre escrever pra mim quando eu tô triste. Você não
+                    gosta de falar mas faz questão por saber que eu gosto que fale. Você me afirma em 3 minutos o que um
+                    literário demoraria 1 página inteira pra afirmar: <br><strong>"o quanto eu amo a minha
+                        mulher".....</strong></p>
+                <p>Na verdade seu rosto sorridente sempre que me vê, que pensa em mim, que fala comigo, que escuta meu
+                    áudio e que recebe um presente meu já deixa muito explícito o quanto você me ama... talvez não
+                    explicite todo o sentimento, mas uma parte dele.</p>
+            </div>
+            <div class="col-img" data-aos="fade-right">
+                <img src="IMG/foto3.png" alt="Momentos" class="story-img">
+            </div>
+        </div>
+
+        <div class="row row-reverse">
+            <div class="col-text" data-aos="fade-right">
+                <p>Eu espero que você não me deixe, porque eu não vou te deixar, eu não quero te deixar, porque mesmo eu
+                    não sendo você e você não sendo eu, essa noite, ontem, hoje e amanhã, até enquanto meu coração bater
+                    e na vida eterna, eu vou ser sua.</p>
+                <p>E vou continuar te falando meus problemas, minha vida, e mesmo você não tendo roubado meu coração, eu
+                    te entrego ele com toda minha sinceridade e amor pra cuidar e pra você entender que Eu te Amo, e vou
+                    mudar e melhorar o que eu precisar pra gente continuar junto, mesmo a essa distância (que no futuro
+                    vai ser menor, eu sei que vai, mesmo demorando).</p>
+            </div>
+            <div class="col-img" data-aos="fade-left">
+                <img src="IMG/foto4.png" alt="Final Feliz" class="story-img">
+            </div>
+        </div>
+
+        <div class="footer-msg" data-aos="zoom-up">
+            FELIZ 2 ANOS NOSSOS<br>
+            MEU (futuro) MARIDO TUTU ❤️<br>
+            <img src="IMG/foto5.png" style="width: 300px; margin-top: 20px;">
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Configuração Crucial do AOS para sumir ao voltar (scroll up)
+        AOS.init({
+            duration: 1000, // Duração da animação
+            mirror: true,   // IMPORTANTE: Faz animar ao contrário quando rola pra cima
+            once: false,    // IMPORTANTE: Permite que a animação aconteça mais de uma vez
+            offset: 100     // Começa a animar um pouco antes do elemento chegar
+        });
+
+        function abrirSite() {
+            const intro = document.getElementById('intro-screen');
+            const content = document.getElementById('content-wrapper');
+
+            // Animação de saída do envelope
+            intro.style.transform = "scale(3)";
+            intro.style.opacity = "0";
+
+            setTimeout(() => {
+                intro.style.display = "none";
+                content.style.display = "block";
+
+                // Recalcula as posições do AOS
+                AOS.refresh();
+
+                // Rola para o topo suavemente
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 600);
+        }
+    </script>
+</body>
+
+</html>
